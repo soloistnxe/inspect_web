@@ -3,7 +3,6 @@
     <!-- 头部区域 -->
     <el-header>
       <div>
-        <img src="../assets/heima.png" alt="">
         <span>食品安全监管系统</span>
       </div>
       <el-button type="info" @click="logout">退出</el-button>
@@ -54,20 +53,17 @@ export default {
       menulist: [{ id: 1,
         name: '用户管理',
         children: [
-          { id: 101, name: '用户列表', path: 'users' },
-          { id: 102, name: '用户管理', path: 'get' }
+          { id: 101, name: '用户列表', path: 'users' }
         ] },
       { id: 2,
         name: '巡检项目配置',
         children: [
-          { id: 201, name: '查看巡检项目', path: 'index' },
-          { id: 202, name: '配置巡检项目', path: 'get' }
+          { id: 201, name: '巡检项目列表', path: 'project' }
         ] },
       { id: 3,
         name: '检查工作配置',
         children: [
-          { id: 301, name: '查看检查工作', path: 'index' },
-          { id: 302, name: '配置检查工作', path: 'get' }
+          { id: 301, name: '检查工作列表', path: 'work' }
         ] },
       { id: 4,
         name: '检查报告',
@@ -93,7 +89,8 @@ export default {
     this.activePath = window.sessionStorage.getItem('activePath')
     const user = JSON.parse(window.sessionStorage.getItem('user'))
     if (user.userType === 1) {
-      this.menulist[0].children[0].name = '修改密码'
+      this.menulist[0].children[0].name = '修改个人信息'
+      this.menulist[0].children[0].path = 'edit'
     }
   },
   methods: {
@@ -148,11 +145,6 @@ export default {
     border-right: none;
   }
 }
-
-.el-main {
-  background-color: #eaedf1;
-}
-
 .iconfont {
   margin-right: 10px;
 }
