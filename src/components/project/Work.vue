@@ -78,7 +78,7 @@
           <el-form-item label="产品类型" prop="productType">
             <el-input v-model="work.productType" disabled></el-input>
           </el-form-item>
-          <el-table :data="work.inspectScoreDetail" border show-summary>
+          <el-table :data="work.inspectScoreDetail" :cell-style="switchColor" border show-summary>
             <el-table-column prop="project" label="巡检项目名">
             </el-table-column>
             <el-table-column prop="score" label="得分">
@@ -222,7 +222,7 @@ export default {
       var data = JSON.stringify(this.editWorkForm)
       this.$refs.editWorkFormRef.validate(async valid => {
         if (!valid) return
-        const { data: res } = await this.$http.post('work/updateWork', data, { headers: { 'content-type': 'application/json' } })
+        const { data: res } = await this.$http.post('work/updateWork', data, { headers: { 'Content-type': 'application/json' } })
         if (res.code !== 200) {
           this.$message.error('修改巡检项目失败！')
         } else {
@@ -304,6 +304,11 @@ export default {
     },
     resetForm (formName) {
       this.$refs[formName].resetFields()
+    },
+    switchColor (row, column, rowIndex, columnIndex) {
+      if (row.column.label === '得分' && row.row.score < 6) {
+        return 'color:red'
+      }
     }
   },
   created () {
@@ -314,7 +319,6 @@ export default {
   }
 }
 </script>
-
 <style scoped>
 
 </style>

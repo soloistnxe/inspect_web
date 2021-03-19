@@ -66,10 +66,10 @@ export default {
           { id: 301, name: '检查工作列表', path: 'work' }
         ] },
       { id: 4,
-        name: '检查报告',
+        name: '数据分析',
         children: [
-          { id: 401, name: '查看检查报告', path: 'index' },
-          { id: 402, name: '配置检查工作', path: 'get' }
+          { id: 401, name: '推荐分析', path: 'recommend' },
+          { id: 402, name: '主成分分析', path: 'analyse' }
         ] }
       ],
       iconsObj: {

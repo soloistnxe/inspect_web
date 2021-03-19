@@ -6,6 +6,8 @@ import Welcome from './components/Welcome.vue'
 import Users from './components/project/User'
 import Project from './components/project/Project'
 import Work from './components/project/Work'
+import Analyse from './components/project/Analyse'
+import Recommend from './components/project/Recommend'
 Vue.use(Router)
 const router = new Router({
   routes: [
@@ -19,9 +21,10 @@ const router = new Router({
         { path: '/welcome', component: Welcome },
         { path: '/users', component: Users },
         { path: '/project', component: Project },
-        { path: '/work', component: Work }
+        { path: '/work', component: Work },
+        { path: '/analyse', component: Analyse },
+        { path: '/recommend', component: Recommend }
         /*
-        { path: '/roles', component: Roles },
         { path: '/categories', component: Cate },
         { path: '/params', component: Params },
         { path: '/goods', component: GoodsList },
