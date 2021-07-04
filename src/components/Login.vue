@@ -3,7 +3,7 @@
     <div class="content">
       <div class="content_input">
         <div class="title">
-          <p>食品安全监管系统</p>
+          <p>巡检、抽检数据分析系统</p>
         </div>
         <!-- 登录表单区域 -->
         <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" label-width="0px" class="login_form">

@@ -95,8 +95,8 @@
     <el-dialog title="编辑巡检项目" :visible.sync="editDialogVisible" width="50%" @close="showDialogClosed('editProjectFormRef')">
       <!-- 内容主体区域 -->
       <el-form :model="editProjectForm" :rules="addProjectFormRules" ref="editProjectFormRef" label-width="110px">
-        <el-form-item label="巡检项目编号" prop="projectId">
-          <el-input v-model="editProjectForm.projectId" style="width: 80%" disabled></el-input>
+        <el-form-item label="巡检项目编号" prop="projectId" style="font-size: 18px">
+          <el-input v-model="editProjectForm.projectId" style="width: 80%;font-size: 18px" disabled ></el-input>
         </el-form-item>
         <el-form-item label="巡检项目内容" prop="projectContent">
           <el-input type="textarea" :rows="2" v-model="editProjectForm.projectContent" style="width: 80%"></el-input>

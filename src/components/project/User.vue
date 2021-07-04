@@ -285,7 +285,7 @@ export default {
         if (!valid) return
         // 发起修改用户信息的数据请求
         const { data: res } = await this.$http.post(
-          'update', this.$qs.stringify(this.editForm))
+          'user/update', this.$qs.stringify(this.editForm))
         console.log(this.editForm)
         if (res.code !== 200) {
           return this.$message.error('更新用户信息失败！')

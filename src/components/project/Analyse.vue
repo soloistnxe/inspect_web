@@ -8,11 +8,11 @@
       <h5 style="float: right; height: 13px;margin: 0px">当前登录用户：{{user.userName}}</h5>
     </el-breadcrumb>
     <el-card>
-      <h5 v-text="names" style="margin: 0px 0px 30px;color: red"></h5>
+      <h5 v-text="names" style="margin: 0px 0px 30px;color: red;font-size: 16px"></h5>
       <div id="main" style="width: 50%;height:500px;display: inline-block"></div>
       <div style="height:500px;display: inline-block;float: right">
         <template>
-          <table border="0" cellspacing="3">
+          <table border="0" cellspacing="3" style="font-size: 16px">
             <caption>主成分载荷</caption>
             <tr>
               <td></td>
@@ -26,14 +26,14 @@
       </div>
       <div>
         <template>
-          <table border="0" cellspacing="10">
+          <table border="0" cellspacing="10" style="font-size: 18px">
             <caption>主成分分析表</caption>
             <tr>
               <td></td>
               <td :key="index" v-for="(item,index) in xAxis">{{item}}</td>
             </tr>
             <tr>
-              <td>主成分方差</td>
+              <td >主成分方差</td>
               <td :key="index" v-for="(item,index) in report.variance" v-bind="item">{{item}}</td>
             </tr>
             <tr>
@@ -72,7 +72,10 @@ export default {
         },
         tooltip: {},
         legend: {
-          data: ['方差']
+          data: ['方差'],
+          textStyle: {
+            fontSize: 18
+          }
         },
         grid: {
           left: '3%',
@@ -81,9 +84,20 @@ export default {
           containLabel: true
         },
         xAxis: {
-          data: []
+          data: [],
+          axisLabel: {
+            textStyle: {
+              fontSize: 18
+            }
+          }
         },
-        yAxis: {},
+        yAxis: {
+          axisLabel: {
+            textStyle: {
+              fontSize: 18
+            }
+          }
+        },
         series: {
           name: '方差',
           type: 'line',
@@ -101,9 +115,9 @@ export default {
     // 3. 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main'))
     // 4. 准备数据和配置项
-    const { data: res } = await this.$http.get('report/score')
+    const { data: res } = await this.$http.get('report/pca')
     if (res.code !== 200) {
-      return this.$message.error('获取巡检项目类型列表失败！')
+      return this.$message.error('主成分分析失败，请检查R语言服务是否开启！')
     }
     this.report = res.data.report
     this.names = res.data.names

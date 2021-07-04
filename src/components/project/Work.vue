@@ -11,7 +11,7 @@
         <!-- 搜索与添加区域 -->
         <el-row :gutter="20">
           <el-col :span="8">
-            <el-input placeholder="请输入内容" v-model="queryInfo.query" clearable @clear="getWorkList">
+            <el-input placeholder="请输入产品类型" v-model="queryInfo.query" clearable @clear="getWorkList">
               <el-button slot="append" icon="el-icon-search" @click="getWorkList"></el-button>
             </el-input>
           </el-col>
@@ -51,6 +51,9 @@
       <el-dialog title="添加检查工作" :visible.sync="addDialogVisible" width="40%" @close="showDialogClosed('addWorkFormRef')">
         <!-- 内容主体区域 -->
         <el-form :model="addWorkForm" :rules="addWorkFormRules" ref="addWorkFormRef" label-width="110px">
+          <el-form-item label="公司ID" prop="companyId">
+            <el-input  v-model="addWorkForm.companyId"></el-input>
+          </el-form-item>
           <el-form-item label="公司名称" prop="companyName">
             <el-input  v-model="addWorkForm.companyName"></el-input>
           </el-form-item>
@@ -67,7 +70,7 @@
       </el-dialog>
 
       <!-- 查看检查工作详情的对话框 -->
-      <el-dialog title="检查工作详情" :visible.sync="showDialogVisible" width="40%">
+      <el-dialog title="检查工作详情" :visible.sync="showDialogVisible" width="60%">
         <el-form :model="work"  ref="showFormRef" label-width="80px">
           <el-form-item label="检查工作" prop="workId">
             <el-input v-model="work.workId" disabled></el-input>
@@ -91,7 +94,7 @@
       </el-dialog>
 
       <!--审核检查工作的对话框-->
-      <el-dialog title="编辑巡检项目" :visible.sync="editDialogVisible" width="40%" @close="showDialogClosed('editWorkFormRef')">
+      <el-dialog title="审核抽检工作" :visible.sync="editDialogVisible" width="40%" @close="showDialogClosed('editWorkFormRef')">
         <!-- 内容主体区域 -->
         <el-form :model="editWorkForm" ref="editWorkFormRef"  label-width="140px">
           <el-form-item label="检查编号" prop="workId">
@@ -142,6 +145,7 @@ export default {
       work: {},
       total: 0,
       addWorkForm: {
+        companyId: '',
         companyName: '',
         productType: '',
         auditType: 0

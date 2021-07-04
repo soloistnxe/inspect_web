@@ -12,7 +12,7 @@
       <div style="height: 200px">
         <div style="display: inline-block;float: left">
         <template>
-          <table style="border-style:hidden" cellspacing="3">
+          <table style="border-style:hidden;font-size: 18px" cellspacing="3">
             <caption>最终频繁项集</caption>
             <tr>
               <td :key="index" v-for="(item,index) in frequentItems">{{item}}</td>
@@ -22,7 +22,7 @@
         </div>
         <div style="display: inline-block;float: right">
         <template>
-          <table border="2" cellspacing="5">
+          <table border="2" cellspacing="5" style="font-size: 18px">
             <caption>推荐结果</caption>
             <tr>
               <td>项集</td>
@@ -62,7 +62,7 @@ export default {
     // 3. 基于准备好的dom，初始化echarts实例
     var myChart = echarts.init(document.getElementById('main'))
     // 4. 准备数据和配置项
-    const { data: res } = await this.$http.get('report/recommend')
+    const { data: res } = await this.$http.get('report/apriori')
     if (res.code !== 200) {
       return this.$message.error('获取巡检项目类型列表失败！')
     }
@@ -86,7 +86,10 @@ export default {
             normal: {
               label: {
                 show: true,
-                formatter: '{b} : {c} ({d}%)'
+                formatter: '{b} : {c} ({d}%)',
+                textStyle: {
+                  fontSize: 18
+                }
               },
               labelLine: { show: true }
             }
